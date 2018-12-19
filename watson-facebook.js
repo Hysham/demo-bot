@@ -6,12 +6,13 @@ var Botkit = require('botkit');
 import {mediate} from './app/modules/mediator'
 import {fbConfig} from './config/config'
 
+
 var controller = Botkit.facebookbot(fbConfig);
 
 var bot = controller.spawn({
 });
 
-controller.setupWebserver(process.env.port || 5000, function(err, webserver) {
+controller.setupWebserver(process.env.port || 8080, function(err, webserver) {
     controller.createWebhookEndpoints(webserver, bot, function() {
     });
 });
