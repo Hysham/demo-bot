@@ -5,14 +5,14 @@ require('dotenv').load();
 var Botkit = require('botkit');
 import {mediate} from './app/modules/mediator'
 import {fbConfig} from './config/config'
-
+const PORT = 3000
 
 var controller = Botkit.facebookbot(fbConfig);
 
 var bot = controller.spawn({
 });
 
-controller.setupWebserver(process.env.port || 8080, function(err, webserver) {
+controller.setupWebserver(process.env.PORT || PORT, function(err, webserver) {
     controller.createWebhookEndpoints(webserver, bot, function() {
     });
 });
