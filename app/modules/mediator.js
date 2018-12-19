@@ -3,17 +3,12 @@
 /**
  * Created by hysham on 12/18/2018.
  */
-require('dotenv').load();
+import {watson_middleware,mongoURI} from '../../config/config';
 const mongoose = require('mongoose');
 var User = require('../../user/User');
 var message_processor = require('./message_processor')
-var middleware = require('botkit-middleware-watson')({
-    username: process.env.CONVERSATION_USERNAME,
-    password: process.env.CONVERSATION_PASSWORD,
-    workspace_id: process.env.WORKSPACE_ID,
-    version_date: '2018-12-15'
-});
-mongoose.connect(process.env.MONGOURI);
+var middleware = require('botkit-middleware-watson')(watson_middleware);
+mongoose.connect(mongoURI);
 let command=''
 
 export function mediate(bot, message,c, callback) {
@@ -45,8 +40,6 @@ export function mediate(bot, message,c, callback) {
             command=''
             let mess = [];
             let out = {};
-            let customFacebookMessage = false;
-            let actionToBeInvoked = false;
             if (message.watsonData) {
                 if (message.watsonData.output) {
                     //console.log('output is::::::::',message);

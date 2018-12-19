@@ -2,18 +2,10 @@
  * Created by hysham on 12/18/2018.
  */
 var Botkit = require('botkit');
-require('dotenv').load();
 import {mediate} from './app/modules/mediator'
+import {fbConfig} from './config/config'
 
-var controller = Botkit.facebookbot({
-    debug: true, 
-    log: true,
-   
-    access_token: process.env.FACEBOOK_PAGE_TOKEN,
-    verify_token: process.env.FACEBOOK_VERIFY_TOKEN,
-    app_secret: process.env.FACEBOOK_APP_SECRET,
-    validate_requests: true
-});
+var controller = Botkit.facebookbot(fbConfig);
 
 var bot = controller.spawn({
 });
