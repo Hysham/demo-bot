@@ -1,6 +1,7 @@
 /**
  * Created by hysham on 12/18/2018.
  */
+require('dotenv').load();
 var Botkit = require('botkit');
 import {mediate} from './app/modules/mediator'
 import {fbConfig} from './config/config'
